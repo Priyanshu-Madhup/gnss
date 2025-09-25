@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { DarkModeProvider } from './contexts/DarkModeContext';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import DataUpload from './pages/DataUpload';
+import ModelInsights from './pages/ModelInsights';
+import EarthVisualization from './pages/EarthVisualization';
+import ImpactBenefits from './pages/ImpactBenefits';
+import Research from './pages/Research';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DarkModeProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="/upload" element={<DataUpload />} />
+            <Route path="/insights" element={<ModelInsights />} />
+            <Route path="/earth" element={<EarthVisualization />} />
+            <Route path="/impact" element={<ImpactBenefits />} />
+            <Route path="/research" element={<Research />} />
+          </Route>
+        </Routes>
+      </Router>
+    </DarkModeProvider>
   );
 }
 
